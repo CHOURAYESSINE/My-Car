@@ -18,6 +18,12 @@ class DB {
   $url=getenv('DATABASE_URL');if(!$url)throw new RuntimeException('DATABASE_URL is required.');
   $u=parse_url($url);$ssl=getenv('VERCEL')?'verify-full':'require';
   $dsn='pgsql:host='.$u['host'].';port='.($u['port']??5432).';dbname='.ltrim($u['path'],'/').';sslmode='.$ssl;
+  if(getenv('VERCEL')){
+   $certificates=['/etc/pki/tls/certs/ca-bundle.crt','/etc/ssl/certs/ca-certificates.crt',ini_get('openssl.cafile')];
+   $certificate=null;foreach($certificates as $file){if($file&&is_file($file)){$certificate=$file;break;}}
+   if(!$certificate)throw new RuntimeException('The system TLS certificate bundle is missing.');
+   $dsn.=';sslrootcert='.$certificate;
+  }
   self::$pdo=new PDO($dsn,rawurldecode($u['user']),rawurldecode($u['pass']),[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES=>false,PDO::PGSQL_ATTR_DISABLE_PREPARES=>true]);
   self::$pdo->exec('SET search_path TO my_car');return self::$pdo;
  }
