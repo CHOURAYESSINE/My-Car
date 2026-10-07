@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once __DIR__.'/bootstrap.php';
     include 'includes/more.inc.php';
     include 'includes/search.inc.php';
 ?>

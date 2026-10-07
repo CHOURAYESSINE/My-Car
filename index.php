@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once __DIR__.'/bootstrap.php';
     include 'includes/index.inc.php';
     include 'includes/search.inc.php';
 ?>
@@ -113,14 +113,14 @@
                     while($row = $stories->fetch_assoc()){
                         if($row['showing'] == 1){
                             echo '<div class="item" data-aos="slide-left">
-            					<div class="item-image" style="background-image:linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url(assets/Story_images/story'.str_replace(" ", "_", $row['title']).'.jpg);
+                    <div class="item-image" style="background-image:linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url(assets/Story_images/'.$row['image'].');
             								 background-size: cover;
             								 background-position:center;">
             								 <div class="inner-item"></div>
             					</div>
             					<h2>'.$row['title'].'</h2>
                                 <p class="story-body" style="display: none;">'.$row['body'].'</p>
-                                <p class="story-image" style="display: none;">story'.str_replace(" ", "_", $row['title']).'</p>
+                                <p class="story-image" style="display: none;">'.$row['image'].'</p>
                                 <p class="story-id" style="display: none;">'.$row['id'].'</p>
             				</div>';
                         }

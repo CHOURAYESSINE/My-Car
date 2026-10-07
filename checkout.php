@@ -1,9 +1,9 @@
 <?php
-    session_start();
+    require_once __DIR__.'/bootstrap.php';
     include 'includes/autoloader.inc.php'; 
 
     if (!isset($_SESSION['id'])) {
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 

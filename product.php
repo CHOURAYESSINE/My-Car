@@ -1,10 +1,6 @@
 <?php
-    session_start();
+    require_once __DIR__.'/bootstrap.php';
     include 'includes/product.inc.php';
-    if(!isset($_SESSION['username'])){
-        header("Location: index.php");
-        exit();
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

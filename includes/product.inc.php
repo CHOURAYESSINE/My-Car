@@ -30,3 +30,5 @@
 		header("Location: index.php");
 		exit();
 	}
+
+if(empty($row)){http_response_code(404);exit('Item not found.');}

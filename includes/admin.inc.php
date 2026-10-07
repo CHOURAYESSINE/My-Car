@@ -10,7 +10,7 @@
 		$_SESSION['message'] = 'Car added successfully';
 		header("Location: admin.php");
 	}
-	if(isset($_GET['id'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['id'])){
 		$car->delete_car($_GET['id']);
 		header("Location: admin.php");
 	}
@@ -27,14 +27,14 @@
 		$order_id = $_GET['order_id'];
 	}
 
-	if(isset($_GET['del_id'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['del_id'])){
 		$order->delete_order($_GET['del_id']);
 		header("Location: admin.php");
 	}
 
 	$user = new User();
 	$users = $user->get_user();
-	if(isset($_GET['del_user'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['del_user'])){
 		$user->delete_user($_GET['del_user']);
 		header("Location: admin.php");
 	}
@@ -46,11 +46,11 @@
 		$result = $story->add_story($_POST['title'], $_POST['body'], $file, 1);
 		header("Location: admin.php");
 	}
-	if(isset($_GET['story_show'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['story_show'])){
 		$story->story_visibality($_GET['story_show']);
 		header("Location: admin.php");
 	}
-	if(isset($_GET['delete_story'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['delete_story'])){
 		$story->delete_story($_GET['delete_story']);
 		header("Location: admin.php");
 	}
@@ -67,7 +67,7 @@
 		$_SESSION['message'] = 'Product added successfully';
 		header("Location: admin.php");
 	}
-	if(isset($_GET['product_del_id'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['product_del_id'])){
 		$product->delete_product($_GET['product_del_id']);
 		header("Location: admin.php");
 	}
@@ -79,7 +79,7 @@
 		$thought->insert_thought($_POST, $file);
 		header("Location: admin.php");
 	}
-	if(isset($_GET['delete_thought'])){
+	if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['delete_thought'])){
 		$thought->delete_thought($_GET['delete_thought']);
 		header("Location: admin.php");
 	}

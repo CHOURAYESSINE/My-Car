@@ -30,6 +30,7 @@
 	if(isset($_POST['login-submit'])){
 		$error = $user->login($_POST);
 		if(empty($error)){
+            session_regenerate_id(true);
 			$selected_user = $user->get_user($_POST['email']);
 			$row = $selected_user->fetch_assoc();
 			$carts = $cart->get_cart($row['id']);

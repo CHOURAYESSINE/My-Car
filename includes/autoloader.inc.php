@@ -1,9 +1,3 @@
 <?php
-	spl_autoload_register('classLoader');
-
-	function classLoader($class){
-		$dic = "classes/";
-		$extension = ".class.php";
-		$path = $dic . $class . $extension;
-		include_once $path;
-	}
+require_once dirname(__DIR__).'/bootstrap.php';
+spl_autoload_register(function($class){$path=dirname(__DIR__).'/classes/'.strtolower($class).'.class.php';if(is_file($path))require_once $path;});
