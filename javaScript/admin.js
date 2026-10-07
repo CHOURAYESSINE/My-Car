@@ -16,7 +16,7 @@ function update(x){
 			for(var i=1; i<td.length; i+=2){
 				array.push(td[i].innerHTML);
 			}
-			var inputs = document.querySelectorAll('.cars .update-cars .add input');
+			var inputs = document.querySelectorAll('.cars .update-cars .add input:not([name="_csrf"])');
 			var j=3;
 			for(var i=0; i<inputs.length - 1; i++){
 				var str = array[j].replace("$", "");
@@ -77,7 +77,7 @@ function update_product(x_products){
 			for(var i=1; i<td_products.length; i+=2){
 				array_products.push(td_products[i].innerHTML);
 			}
-			var inputs_products = document.querySelectorAll('.products .update-products .add input');
+			var inputs_products = document.querySelectorAll('.products .update-products .add input:not([name="_csrf"])');
 			var j_products=3;
 			for(var i=0; i<inputs_products.length - 1; i++){
 				var str_products = array_products[j_products].replace("$", "");
